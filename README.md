@@ -1,46 +1,50 @@
 # Linear Algebra Visualizer
 
-A small Python module for visualizing core linear algebra ideas in 2D and 3D using `matplotlib`.
+An interactive linear algebra visualizer powered by `pygame` + `numpy`.
 
-## Features
+## What changed
 
-- Visualize one or more vectors in 2D or 3D.
-- Visualize the span of two vectors (line in dependent case, plane in independent case).
-- Visualize dot products geometrically (including the projection component).
-- Visualize vector projection onto another vector.
-- Visualize matrix transformations in 2D and 3D.
+This project now uses a real-time pygame canvas (instead of matplotlib) with:
+- Command input for vectors, matrices, and operations.
+- 3D-style graph rotation (mouse drag), zoom (mouse wheel), and view reset.
+- Scene reset / clear for trying new operations quickly.
+- Built-in dimensionality reduction (`dr(...)` / `pca(...)`) visualization support.
 
 ## Installation
 
 ```bash
-pip install numpy matplotlib
+pip install numpy pygame
 ```
 
-## Quick start
+## Run interactive tool
 
 ```python
 from la_visualizer import LinearAlgebraVisualizer
 
 viz = LinearAlgebraVisualizer()
-
-# Plot vectors
-viz.plot_vectors([[2, 1], [1, 3]], labels=["u", "v"], title="2D Vectors")
-
-# Plot span
-viz.plot_span([2, 1], [1, 3], title="Span(u, v)")
-
-# Dot product visualization
-viz.plot_dot_product([3, 1], [2, 2], title="Dot Product")
-
-# Projection visualization
-viz.plot_projection([3, 1], [2, 2], title="Projection of u onto v")
-
-# Matrix transform visualization
-viz.plot_matrix_transform(
-    matrix=[[1, -1], [1, 1]],
-    vectors=[[1, 0], [0, 1], [1, 1]],
-    title="2D Matrix Transform"
-)
+viz.run_interactive()
 ```
 
-Use `show=False` on plotting methods if you want to compose multiple plots and call `matplotlib.pyplot.show()` manually.
+## Command examples
+
+- Variable assignment:
+  - `v=[2,1,3]`
+  - `w=[1,-1,2]`
+  - `A=[[1,0,0],[0,0,-1],[0,1,0]]`
+- Operations:
+  - `v+w`
+  - `A@v`
+  - `dot(v,w)`
+  - `proj(v,w)`
+- Dimensionality reduction:
+  - `data=[[2,1,0],[1,2,0],[3,4,1],[4,3,1]]`
+  - `dr(data,2)`
+
+## Controls
+
+- **Enter**: execute command in input box.
+- **Mouse drag**: rotate graph.
+- **Mouse wheel**: zoom.
+- **R**: reset camera view.
+- **C**: clear current visualization.
+- **`reset` command**: clear scene via input.

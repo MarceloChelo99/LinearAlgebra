@@ -21,3 +21,17 @@ def test_dimension_mismatch_raises():
         assert False, "Expected ValueError"
     except ValueError:
         assert True
+
+
+def test_execute_assignment_and_operation():
+    viz = LinearAlgebraVisualizer()
+    viz.execute("v=[1,2,3]")
+    viz.execute("w=[3,2,1]")
+    out = viz.execute("v+w")
+    np.testing.assert_allclose(out.value, np.array([4.0, 4.0, 4.0]))
+
+
+def test_dimensionality_reduction_shape():
+    viz = LinearAlgebraVisualizer()
+    reduced = viz.dimensionality_reduction([[1, 2, 3], [2, 3, 4], [3, 4, 5]], k=2)
+    assert reduced.shape == (3, 2)

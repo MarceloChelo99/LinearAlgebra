@@ -35,3 +35,17 @@ def test_dimensionality_reduction_shape():
     viz = LinearAlgebraVisualizer()
     reduced = viz.dimensionality_reduction([[1, 2, 3], [2, 3, 4], [3, 4, 5]], k=2)
     assert reduced.shape == (3, 2)
+
+
+def test_main_starts_visualizer(monkeypatch):
+    from la_visualizer import main as main_module
+
+    started = {"called": False}
+
+    def fake_run(self):
+        started["called"] = True
+
+    monkeypatch.setattr(main_module.LinearAlgebraVisualizer, "run_interactive", fake_run)
+    main_module.main()
+
+    assert started["called"] is True

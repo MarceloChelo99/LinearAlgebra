@@ -2,3 +2,4 @@
 *.lock
 .venv/
 .idea/
+__pycache__/

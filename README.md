@@ -25,6 +25,13 @@ viz = LinearAlgebraVisualizer()
 viz.run_interactive()
 ```
 
+
+Or use the CLI entry point:
+
+```bash
+la-visualizer
+```
+
 ## Command examples
 
 - Variable assignment:

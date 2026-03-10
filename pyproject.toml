@@ -15,3 +15,6 @@ dependencies = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.scripts]
+la-visualizer = "la_visualizer.main:main"
